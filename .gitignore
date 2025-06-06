@@ -1,2 +1,5 @@
 codex_test/
 imgui.ini
+
+# Ignore compiled shader objects
+*.cso

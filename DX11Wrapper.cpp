@@ -4,6 +4,7 @@
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
 #include <dxgi.h>
+#include <d3dcompiler.h>
 
 DX11Wrapper::DX11Wrapper() {}
 
@@ -100,7 +101,7 @@ bool DX11Wrapper::CreateTriangle()
         return false;
 
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
-    hr = D3DCompileFromFile(L"VertexShader.hlsl", nullptr, nullptr, "VSMain", "vs_4_0", 0, 0, vsBlob.GetAddressOf(), nullptr);
+    hr = D3DReadFileToBlob(L"VertexShader.cso", vsBlob.GetAddressOf());
     if (FAILED(hr))
         return false;
 
@@ -116,7 +117,7 @@ bool DX11Wrapper::CreateTriangle()
         return false;
 
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
-    hr = D3DCompileFromFile(L"PixelShader.hlsl", nullptr, nullptr, "PSMain", "ps_4_0", 0, 0, psBlob.GetAddressOf(), nullptr);
+    hr = D3DReadFileToBlob(L"PixelShader.cso", psBlob.GetAddressOf());
     if (FAILED(hr))
         return false;
 
