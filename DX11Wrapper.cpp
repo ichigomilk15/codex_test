@@ -1,11 +1,19 @@
 #include "pch.h"
 #include "DX11Wrapper.h"
+#include "imgui.h"
+#include "imgui_impl_dx11.h"
+#include "imgui_impl_win32.h"
 #include <dxgi.h>
 #include <cstring>
 
 DX11Wrapper::DX11Wrapper() {}
 
-DX11Wrapper::~DX11Wrapper() {}
+DX11Wrapper::~DX11Wrapper()
+{
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
+}
 
 bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
 {
@@ -60,6 +68,13 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
 
     if (!CreateTriangle())
         return false;
+
+    // ImGui initialization
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+    ImGui_ImplWin32_Init(hwnd);
+    ImGui_ImplDX11_Init(device_.Get(), context_.Get());
 
     return true;
 }
@@ -143,6 +158,11 @@ void DX11Wrapper::Draw()
     context_->PSSetShader(pixelShader_.Get(), nullptr, 0);
 
     context_->Draw(3, 0);
+}
+
+void DX11Wrapper::RenderImGui()
+{
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
 
 void DX11Wrapper::Present()

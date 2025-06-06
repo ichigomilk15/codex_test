@@ -19,6 +19,7 @@ public:
     void Clear(float r, float g, float b, float a);
     void Present();
     void Draw();
+    void RenderImGui();
 
     constexpr bool IsInitialized() const noexcept { return isInitialized_; }
 private:
