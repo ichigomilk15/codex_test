@@ -4,7 +4,6 @@
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
 #include <dxgi.h>
-#include <cstring>
 
 DX11Wrapper::DX11Wrapper() {}
 
@@ -99,17 +98,8 @@ bool DX11Wrapper::CreateTriangle()
     if (FAILED(hr))
         return false;
 
-    const char* vsSrc =
-        "struct VS_IN { float3 pos : POSITION; };" \
-        "struct PS_IN { float4 pos : SV_POSITION; };" \
-        "PS_IN main(VS_IN input) {" \
-        "    PS_IN output;" \
-        "    output.pos = float4(input.pos, 1.0f);" \
-        "    return output;" \
-        "}";
-
     Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
-    hr = D3DCompile(vsSrc, strlen(vsSrc), nullptr, nullptr, nullptr, "main", "vs_4_0", 0, 0, vsBlob.GetAddressOf(), nullptr);
+    hr = D3DCompileFromFile(L"VertexShader.hlsl", nullptr, nullptr, "VSMain", "vs_4_0", 0, 0, vsBlob.GetAddressOf(), nullptr);
     if (FAILED(hr))
         return false;
 
@@ -124,11 +114,8 @@ bool DX11Wrapper::CreateTriangle()
     if (FAILED(hr))
         return false;
 
-    const char* psSrc =
-        "float4 main() : SV_TARGET { return float4(1.0f, 1.0f, 0.0f, 1.0f); }";
-
     Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
-    hr = D3DCompile(psSrc, strlen(psSrc), nullptr, nullptr, nullptr, "main", "ps_4_0", 0, 0, psBlob.GetAddressOf(), nullptr);
+    hr = D3DCompileFromFile(L"PixelShader.hlsl", nullptr, nullptr, "PSMain", "ps_4_0", 0, 0, psBlob.GetAddressOf(), nullptr);
     if (FAILED(hr))
         return false;
 

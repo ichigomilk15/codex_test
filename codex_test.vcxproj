@@ -180,6 +180,11 @@
     <ResourceCompile Include="codex_test.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ShaderCommon.hlsli" />
+    <None Include="VertexShader.hlsl" />
+    <None Include="PixelShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
     <Image Include="codex_test.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
