@@ -8,6 +8,12 @@
 #include <cmath>
 
 #include "DX11Wrapper.h"
+#include "imgui.h"
+#include "imgui_impl_dx11.h"
+#include "imgui_impl_win32.h"
+
+// imgui_impl_win32.h で宣言がコメントアウトされているため、ここで宣言しておく
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 #define MAX_LOADSTRING 100
 
@@ -16,6 +22,7 @@ HINSTANCE hInst;                                // 現在のインターフェ�
 WCHAR szTitle[MAX_LOADSTRING];                  // タイトル バーのテキスト
 WCHAR szWindowClass[MAX_LOADSTRING];            // メイン ウィンドウ クラス名
 DX11Wrapper g_dx;
+float g_clearColor[4] = {0.4f, 0.6f, 0.9f, 1.0f};
 
 // このコード モジュールに含まれる関数の宣言を転送します:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -132,6 +139,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+        return true;
     switch (message)
     {
     case WM_COMMAND:
@@ -157,11 +166,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             BeginPaint(hWnd, &ps);
             if (g_dx.IsInitialized())
             {
-                // DirectX 11 の描画処理
-                static float color = 0.0f;
-                color += 0.03f;
-                g_dx.Clear(sinf(color)*0.5f+0.5f, sinf(color)*0.5f+0.5f, 0.4f, 1.0f);
+                ImGui_ImplDX11_NewFrame();
+                ImGui_ImplWin32_NewFrame();
+                ImGui::NewFrame();
+
+                ImGui::Begin("Debug");
+                ImGui::ColorEdit4("Clear Color", g_clearColor);
+                ImGui::End();
+
+                ImGui::Render();
+
+                g_dx.Clear(g_clearColor[0], g_clearColor[1], g_clearColor[2], g_clearColor[3]);
                 g_dx.Draw();
+                g_dx.RenderImGui();
                 g_dx.Present();
             }
             EndPaint(hWnd, &ps);
