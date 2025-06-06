@@ -22,6 +22,8 @@ public:
 
     constexpr bool IsInitialized() const noexcept { return isInitialized_; }
 private:
+    bool CreateTriangle();
+private:
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> context_;
     Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
@@ -30,8 +32,6 @@ private:
     Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader_;
     Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader_;
     Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout_;
-
-    bool CreateTriangle();
 
     bool isInitialized_ = false;
 };
