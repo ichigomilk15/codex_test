@@ -140,7 +140,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UpdateWindow(hWnd);
 
    // DirectX11 の初期化
-   g_dx.Initialize(hWnd, 800, 600);
+   RECT rc{};
+   GetClientRect(hWnd, &rc);
+   g_dx.Initialize(hWnd, rc.right - rc.left, rc.bottom - rc.top);
 
    return TRUE;
 }
@@ -176,6 +178,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
+        }
+        break;
+    case WM_SIZE:
+        if (g_dx.IsInitialized() && wParam != SIZE_MINIMIZED)
+        {
+            UINT width = LOWORD(lParam);
+            UINT height = HIWORD(lParam);
+            g_dx.Resize(width, height);
         }
         break;
     case WM_PAINT:

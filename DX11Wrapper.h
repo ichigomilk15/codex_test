@@ -20,6 +20,7 @@ public:
     void Present();
     void Draw();
     void RenderImGui();
+    bool Resize(int width, int height);
 
     constexpr bool IsInitialized() const noexcept { return isInitialized_; }
 private:

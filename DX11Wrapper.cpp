@@ -169,3 +169,40 @@ void DX11Wrapper::Present()
 {
     swapChain_->Present(1, 0);
 }
+
+bool DX11Wrapper::Resize(int width, int height)
+{
+    if (!swapChain_)
+        return false;
+
+    context_->OMSetRenderTargets(0, nullptr, nullptr);
+    renderTargetView_.Reset();
+
+    HRESULT hr = swapChain_->ResizeBuffers(0, width, height, DXGI_FORMAT_UNKNOWN, 0);
+    if (FAILED(hr))
+        return false;
+
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
+    hr = swapChain_->GetBuffer(0, __uuidof(ID3D11Texture2D),
+                               reinterpret_cast<void**>(backBuffer.GetAddressOf()));
+    if (FAILED(hr))
+        return false;
+
+    hr = device_->CreateRenderTargetView(backBuffer.Get(), nullptr,
+                                         renderTargetView_.GetAddressOf());
+    if (FAILED(hr))
+        return false;
+
+    context_->OMSetRenderTargets(1, renderTargetView_.GetAddressOf(), nullptr);
+
+    D3D11_VIEWPORT vp{};
+    vp.Width = static_cast<float>(width);
+    vp.Height = static_cast<float>(height);
+    vp.MinDepth = 0.0f;
+    vp.MaxDepth = 1.0f;
+    vp.TopLeftX = 0;
+    vp.TopLeftY = 0;
+    context_->RSSetViewports(1, &vp);
+
+    return true;
+}
