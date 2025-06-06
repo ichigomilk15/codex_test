@@ -153,6 +153,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             BeginPaint(hWnd, &ps);
             g_dx.Clear(0.1f, 0.2f, 0.4f, 1.0f);
+            g_dx.Draw();
             g_dx.Present();
             EndPaint(hWnd, &ps);
         }
