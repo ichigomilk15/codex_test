@@ -56,6 +56,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // メイン メッセージ ループ:
     while (msg.message != WM_QUIT)
     {
+        // Windows のメッセージ処理
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
@@ -64,16 +65,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                 DispatchMessage(&msg);
             }
         }
+        // メッセージが無い場合は描画処理を実行
         else if (g_dx.IsInitialized())
         {
+            // ImGui フレーム開始
             ImGui_ImplDX11_NewFrame();
             ImGui_ImplWin32_NewFrame();
             ImGui::NewFrame();
 
+            // デバッグ用ウィンドウ
             ImGui::Begin("Debug");
             ImGui::ColorEdit4("Clear Color", g_clearColor);
             ImGui::End();
 
+            // 描画処理
             ImGui::Render();
 
             g_dx.Clear(g_clearColor[0], g_clearColor[1], g_clearColor[2], g_clearColor[3]);
@@ -140,9 +145,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UpdateWindow(hWnd);
 
    // DirectX11 の初期化
-   RECT rc{};
-   GetClientRect(hWnd, &rc);
-   g_dx.Initialize(hWnd, rc.right - rc.left, rc.bottom - rc.top);
+    RECT rc{};
+    GetClientRect(hWnd, &rc);    // クライアント領域のサイズ取得
+    // 取得したサイズで DX11 を初期化
+    g_dx.Initialize(hWnd, rc.right - rc.left, rc.bottom - rc.top);
 
    return TRUE;
 }
