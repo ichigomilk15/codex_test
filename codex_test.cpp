@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "codex_test.h"
+#include "DX11Wrapper.h"
 
 #define MAX_LOADSTRING 100
 
@@ -11,6 +12,7 @@
 HINSTANCE hInst;                                // 現在のインターフェイス
 WCHAR szTitle[MAX_LOADSTRING];                  // タイトル バーのテキスト
 WCHAR szWindowClass[MAX_LOADSTRING];            // メイン ウィンドウ クラス名
+DX11Wrapper g_dx;
 
 // このコード モジュールに含まれる関数の宣言を転送します:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -109,6 +111,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
+   // DirectX11 の初期化
+   g_dx.Initialize(hWnd, 800, 600);
+
    return TRUE;
 }
 
@@ -146,8 +151,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: HDC を使用する描画コードをここに追加してください...
+            BeginPaint(hWnd, &ps);
+            g_dx.Clear(0.1f, 0.2f, 0.4f, 1.0f);
+            g_dx.Present();
             EndPaint(hWnd, &ps);
         }
         break;
