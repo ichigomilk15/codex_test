@@ -12,6 +12,9 @@
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
 
+// imgui_impl_win32.h で宣言がコメントアウトされているため、ここで宣言しておく
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 #define MAX_LOADSTRING 100
 
 // グローバル変数:
