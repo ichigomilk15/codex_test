@@ -180,6 +180,19 @@
     <ResourceCompile Include="codex_test.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ShaderCommon.hlsli" />
+    <CustomBuild Include="VertexShader.hlsl">
+      <FileType>Document</FileType>
+      <Command>fxc.exe /T vs_4_0 /E VSMain /Fo "$(OutDir)VertexShader.cso" "%(FullPath)"</Command>
+      <Outputs>$(OutDir)VertexShader.cso</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="PixelShader.hlsl">
+      <FileType>Document</FileType>
+      <Command>fxc.exe /T ps_4_0 /E PSMain /Fo "$(OutDir)PixelShader.cso" "%(FullPath)"</Command>
+      <Outputs>$(OutDir)PixelShader.cso</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
     <Image Include="codex_test.ico" />
     <Image Include="small.ico" />
   </ItemGroup>

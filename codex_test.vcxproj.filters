@@ -57,5 +57,14 @@
     <Image Include="codex_test.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <None Include="ShaderCommon.hlsli">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="VertexShader.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="PixelShader.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>
