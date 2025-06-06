@@ -161,6 +161,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 static float color = 0.0f;
                 color += 0.03f;
                 g_dx.Clear(sinf(color)*0.5f+0.5f, sinf(color)*0.5f+0.5f, 0.4f, 1.0f);
+                g_dx.Draw();
                 g_dx.Present();
             }
             EndPaint(hWnd, &ps);
