@@ -75,6 +75,7 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(device_.Get(), context_.Get());
 
+    isInitialized_ = true;
     return true;
 }
 
@@ -123,7 +124,6 @@ bool DX11Wrapper::CreateTriangle()
     if (FAILED(hr))
         return false;
 
-    isInitialized_ = true;
     return true;
 }
 
