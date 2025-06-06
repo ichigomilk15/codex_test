@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "DX11Wrapper.h"
 #include <dxgi.h>
 
@@ -56,6 +57,7 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
     vp.TopLeftY = 0;
     context_->RSSetViewports(1, &vp);
 
+    isInitialized_ = true;
     return true;
 }
 

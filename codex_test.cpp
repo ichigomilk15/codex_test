@@ -4,6 +4,9 @@
 #include "pch.h"
 #include "framework.h"
 #include "codex_test.h"
+
+#include <cmath>
+
 #include "DX11Wrapper.h"
 
 #define MAX_LOADSTRING 100
@@ -152,8 +155,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             BeginPaint(hWnd, &ps);
-            g_dx.Clear(0.1f, 0.2f, 0.4f, 1.0f);
-            g_dx.Present();
+            if (g_dx.IsInitialized())
+            {
+                // DirectX 11 の描画処理
+                static float color = 0.0f;
+                color += 0.03f;
+                g_dx.Clear(sinf(color)*0.5f+0.5f, sinf(color)*0.5f+0.5f, 0.4f, 1.0f);
+                g_dx.Present();
+            }
             EndPaint(hWnd, &ps);
         }
         break;
