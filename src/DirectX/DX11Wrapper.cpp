@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "DX11Wrapper.h"
 #include "imgui.h"
 #include "imgui_impl_dx11.h"

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Polygon.h"
 #include <string>
 
