@@ -6,9 +6,9 @@
 #include <DirectXMath.h>
 #include <memory>
 #include <vector>
-#include "Triangle.h"
-#include "Quad.h"
-#include "Pentagon.h"
+#include "../Shapes/Triangle.h"
+#include "../Shapes/Quad.h"
+#include "../Shapes/Pentagon.h"
 
 class DX11Wrapper
 {

@@ -50,7 +50,7 @@ bool Polygon::CreateResources(ID3D11Device* device)
         return false;
 
     ComPtr<ID3DBlob> vsBlob;
-    if (!CompileShader(L"VertexShader.hlsl", "main", "vs_5_0", vsBlob))
+    if (!CompileShader(L"shaders/SimpleShader/VertexShader.hlsl", "main", "vs_5_0", vsBlob))
         return false;
     if (FAILED(device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), nullptr, vertexShader_.GetAddressOf())))
         return false;
@@ -62,7 +62,7 @@ bool Polygon::CreateResources(ID3D11Device* device)
         return false;
 
     ComPtr<ID3DBlob> psBlob;
-    if (!CompileShader(L"PixelShader.hlsl", "main", "ps_5_0", psBlob))
+    if (!CompileShader(L"shaders/SimpleShader/PixelShader.hlsl", "main", "ps_5_0", psBlob))
         return false;
     if (FAILED(device->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), nullptr, pixelShader_.GetAddressOf())))
         return false;

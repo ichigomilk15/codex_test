@@ -78,6 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -95,6 +96,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -113,7 +115,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -136,6 +138,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -160,19 +163,19 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="DX11Wrapper.h" />
-    <ClInclude Include="Polygon.h" />
-    <ClInclude Include="Triangle.h" />
-    <ClInclude Include="Quad.h" />
-    <ClInclude Include="Pentagon.h" />
+    <ClInclude Include="src\DirectX\DX11Wrapper.h" />
+    <ClInclude Include="src\Shapes\Polygon.h" />
+    <ClInclude Include="src\Shapes\Triangle.h" />
+    <ClInclude Include="src\Shapes\Quad.h" />
+    <ClInclude Include="src\Shapes\Pentagon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="codex_test.cpp" />
-    <ClCompile Include="DX11Wrapper.cpp" />
-    <ClCompile Include="Polygon.cpp" />
-    <ClCompile Include="Triangle.cpp" />
-    <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="Pentagon.cpp" />
+    <ClCompile Include="src\DirectX\DX11Wrapper.cpp" />
+    <ClCompile Include="src\Shapes\Polygon.cpp" />
+    <ClCompile Include="src\Shapes\Triangle.cpp" />
+    <ClCompile Include="src\Shapes\Quad.cpp" />
+    <ClCompile Include="src\Shapes\Pentagon.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -192,13 +195,13 @@
     <ResourceCompile Include="codex_test.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShaderCommon.hlsli" />
-    <FxCompile Include="VertexShader.hlsl">
+    <None Include="shaders\SimpleShader\ShaderCommon.hlsli" />
+    <FxCompile Include="shaders\SimpleShader\VertexShader.hlsl">
       <FileType>Document</FileType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
-    <FxCompile Include="PixelShader.hlsl">
+    <FxCompile Include="shaders\SimpleShader\PixelShader.hlsl">
       <FileType>Document</FileType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>

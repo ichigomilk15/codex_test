@@ -14,10 +14,11 @@ void Pentagon::CreateVertices()
         pts[i] = { radius * cosf(a), radius * sinf(a), 0.0f };
     }
     vertices_.clear();
-    for (int i = 1; i < 4; ++i) {
-        vertices_.push_back({ pts[0].x, pts[0].y, pts[0].z });
+    DirectX::XMFLOAT3 center{0.0f, 0.0f, 0.0f};
+    for (int i = 0; i < 5; ++i) {
+        vertices_.push_back({ center.x, center.y, center.z });
         vertices_.push_back({ pts[i].x, pts[i].y, pts[i].z });
-        vertices_.push_back({ pts[i+1].x, pts[i+1].y, pts[i+1].z });
+        vertices_.push_back({ pts[(i + 1) % 5].x, pts[(i + 1) % 5].y, pts[(i + 1) % 5].z });
     }
     topology_ = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 }

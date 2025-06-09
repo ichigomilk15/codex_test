@@ -30,19 +30,19 @@
     <ClInclude Include="pch.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DX11Wrapper.h">
+    <ClInclude Include="src\DirectX\DX11Wrapper.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Polygon.h">
+    <ClInclude Include="src\Shapes\Polygon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
+    <ClInclude Include="src\Shapes\Triangle.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Quad.h">
+    <ClInclude Include="src\Shapes\Quad.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Pentagon.h">
+    <ClInclude Include="src\Shapes\Pentagon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,19 +50,19 @@
     <ClCompile Include="codex_test.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="DX11Wrapper.cpp">
+    <ClCompile Include="src\DirectX\DX11Wrapper.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Polygon.cpp">
+    <ClCompile Include="src\Shapes\Polygon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Triangle.cpp">
+    <ClCompile Include="src\Shapes\Triangle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Quad.cpp">
+    <ClCompile Include="src\Shapes\Quad.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Pentagon.cpp">
+    <ClCompile Include="src\Shapes\Pentagon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -81,13 +81,13 @@
     <Image Include="codex_test.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
-    <None Include="ShaderCommon.hlsli">
+    <None Include="shaders\SimpleShader\ShaderCommon.hlsli">
       <Filter>リソース ファイル</Filter>
     </None>
-    <None Include="VertexShader.hlsl">
+    <None Include="shaders\SimpleShader\VertexShader.hlsl">
       <Filter>リソース ファイル</Filter>
     </None>
-    <None Include="PixelShader.hlsl">
+    <None Include="shaders\SimpleShader\PixelShader.hlsl">
       <Filter>リソース ファイル</Filter>
     </None>
   </ItemGroup>
