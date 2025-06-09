@@ -170,9 +170,14 @@ void DX11Wrapper::Draw(float angle)
     context_->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     context_->IASetInputLayout(inputLayout_.Get());
 
-    DirectX::XMMATRIX rot = DirectX::XMMatrixRotationZ(angle);
+    constexpr float centerY = -1.0f / 6.0f; // 三角形の中心座標 (Y 軸)
+    DirectX::XMMATRIX world =
+        DirectX::XMMatrixTranslation(0.0f, -centerY, 0.0f) *
+        DirectX::XMMatrixRotationZ(angle) *
+        DirectX::XMMatrixTranslation(0.0f, centerY, 0.0f);
+
     DirectX::XMFLOAT4X4 mat;
-    DirectX::XMStoreFloat4x4(&mat, rot);
+    DirectX::XMStoreFloat4x4(&mat, world);
     context_->UpdateSubresource(constantBuffer_.Get(), 0, nullptr, &mat, 0, 0);
     context_->VSSetConstantBuffers(0, 1, constantBuffer_.GetAddressOf());
 
