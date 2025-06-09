@@ -5,13 +5,28 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\\DirectX">
+      <UniqueIdentifier>{59fdb615-d8dc-45fc-b978-480f52f5dccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\\Shapes">
+      <UniqueIdentifier>{ebbdf293-ec63-4b86-a4fe-49311263d099}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ヘッダー ファイル">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\\DirectX">
+      <UniqueIdentifier>{8a2aff53-622e-4e74-80d8-e69c1542a793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\\Shapes">
+      <UniqueIdentifier>{796aaad4-ebe6-49cb-8a7a-116663233763}</UniqueIdentifier>
+    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル\\Shaders">
+      <UniqueIdentifier>{d29dfe1b-d4d0-4fe2-8c39-a08eb9935f19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,19 +46,19 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\DirectX\DX11Wrapper.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\DirectX</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Polygon.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Triangle.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Quad.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Pentagon.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -51,19 +66,19 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\DirectX\DX11Wrapper.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Polygon.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Triangle.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Quad.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Pentagon.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp">
       <Filter>ソース ファイル</Filter>
@@ -82,13 +97,13 @@
       <Filter>リソース ファイル</Filter>
     </Image>
     <None Include="shaders\SimpleShader\ShaderCommon.hlsli">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソース ファイル\Shaders</Filter>
     </None>
     <None Include="shaders\SimpleShader\VertexShader.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソース ファイル\Shaders</Filter>
     </None>
     <None Include="shaders\SimpleShader\PixelShader.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>リソース ファイル\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
