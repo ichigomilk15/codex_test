@@ -4,6 +4,8 @@
 
 using Microsoft::WRL::ComPtr;
 
+namespace Shapes {
+
 static bool CompileShader(const wchar_t* file, const char* entry, const char* target, ComPtr<ID3DBlob>& blob)
 {
     UINT flags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -101,4 +103,6 @@ void Polygon::DrawGUI()
     ImGui::DragFloat3("Scale", &scale.x, 0.1f);
     ImGui::DragFloat3("Position", &position.x, 0.1f);
 }
+
+} // namespace Shapes
 

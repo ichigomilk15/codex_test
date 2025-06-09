@@ -70,13 +70,13 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(device_.Get(), context_.Get());
 
-    AddPolygon(std::make_unique<Quad>());
+    AddPolygon(std::make_unique<Shapes::Quad>());
 
     isInitialized_ = true;
     return true;
 }
 
-void DX11Wrapper::AddPolygon(std::unique_ptr<Polygon> poly)
+void DX11Wrapper::AddPolygon(std::unique_ptr<Shapes::Polygon> poly)
 {
     if (poly && poly->Initialize(device_.Get()))
         polygons_.push_back(std::move(poly));
@@ -97,11 +97,11 @@ void DX11Wrapper::Draw()
 void DX11Wrapper::DrawGUI()
 {
     ImGui::Begin("Polygons");
-    if (ImGui::Button("Add Triangle")) AddPolygon(std::make_unique<Triangle>());
+    if (ImGui::Button("Add Triangle")) AddPolygon(std::make_unique<Shapes::Triangle>());
     ImGui::SameLine();
-    if (ImGui::Button("Add Quad")) AddPolygon(std::make_unique<Quad>());
+    if (ImGui::Button("Add Quad")) AddPolygon(std::make_unique<Shapes::Quad>());
     ImGui::SameLine();
-    if (ImGui::Button("Add Pentagon")) AddPolygon(std::make_unique<Pentagon>());
+    if (ImGui::Button("Add Pentagon")) AddPolygon(std::make_unique<Shapes::Pentagon>());
 
     for (size_t i = 0; i < polygons_.size(); )
     {

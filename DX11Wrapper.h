@@ -26,9 +26,9 @@ public:
 
     constexpr bool IsInitialized() const noexcept { return isInitialized_; }
 
-    void AddPolygon(std::unique_ptr<Polygon> poly);
+    void AddPolygon(std::unique_ptr<Shapes::Polygon> poly);
 private:
-    std::vector<std::unique_ptr<Polygon>> polygons_;
+    std::vector<std::unique_ptr<Shapes::Polygon>> polygons_;
 
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> context_;

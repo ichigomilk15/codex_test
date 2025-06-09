@@ -8,6 +8,8 @@
 #include <memory>
 #include "imgui.h"
 
+namespace Shapes {
+
 // 汎用多角形基底クラス
 class Polygon {
 public:
@@ -37,3 +39,5 @@ protected:
     virtual void CreateVertices() = 0;
     bool CreateResources(ID3D11Device* device);
 };
+
+} // namespace Shapes

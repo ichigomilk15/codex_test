@@ -2,6 +2,8 @@
 #include "Pentagon.h"
 #include <cmath>
 
+namespace Shapes {
+
 void Pentagon::CreateVertices()
 {
     const float radius = 0.5f;
@@ -19,3 +21,5 @@ void Pentagon::CreateVertices()
     }
     topology_ = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 }
+
+} // namespace Shapes

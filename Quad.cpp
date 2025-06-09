@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Quad.h"
 
+namespace Shapes {
+
 void Quad::CreateVertices()
 {
     vertices_ = {
@@ -13,3 +15,5 @@ void Quad::CreateVertices()
     };
     topology_ = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 }
+
+} // namespace Shapes
