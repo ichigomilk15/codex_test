@@ -21,13 +21,13 @@
     <ClInclude Include="targetver.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="resources\Resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="codex_test.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="src\pch.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\DirectX\DX11Wrapper.h">
@@ -65,20 +65,20 @@
     <ClCompile Include="src\Shapes\Pentagon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="src\\pch.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="codex_test.rc">
+    <ResourceCompile Include="resources\\codex_test.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="resources\\small.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
-    <Image Include="codex_test.ico">
+    <Image Include="resources\\codex_test.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
     <None Include="shaders\SimpleShader\ShaderCommon.hlsli">

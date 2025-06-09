@@ -1,7 +1,7 @@
 ﻿// codex_test.cpp : アプリケーションのエントリ ポイントを定義します。
 //
 
-#include "pch.h"
+#include "src/pch.h"
 #include "framework.h"
 #include "codex_test.h"
 
