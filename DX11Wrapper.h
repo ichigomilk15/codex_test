@@ -3,6 +3,7 @@
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #include <wrl/client.h>
+#include <DirectXMath.h>
 
 // 単純な頂点データを表す構造体
 struct SimpleVertex
@@ -23,7 +24,7 @@ public:
     // バックバッファを表示
     void Present();
     // 三角形を描画
-    void Draw();
+    void Draw(float angle);
     // ImGui の描画処理
     void RenderImGui();
     // ウィンドウリサイズ時の処理
@@ -45,6 +46,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader_;
     Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader_;
     Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayout_;
+    Microsoft::WRL::ComPtr<ID3D11Buffer> constantBuffer_;
 
     bool isInitialized_ = false;
 };

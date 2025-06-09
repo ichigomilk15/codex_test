@@ -142,6 +142,15 @@ bool DX11Wrapper::CreateTriangle()
     if (FAILED(hr))
         return false;
 
+    // 定数バッファ作成
+    D3D11_BUFFER_DESC cbd = {};
+    cbd.Usage = D3D11_USAGE_DEFAULT;
+    cbd.ByteWidth = sizeof(DirectX::XMFLOAT4X4);
+    cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    hr = device_->CreateBuffer(&cbd, nullptr, constantBuffer_.GetAddressOf());
+    if (FAILED(hr))
+        return false;
+
     return true;
 }
 
@@ -153,13 +162,19 @@ void DX11Wrapper::Clear(float r, float g, float b, float a)
 }
 
 // 頂点バッファを利用して描画
-void DX11Wrapper::Draw()
+void DX11Wrapper::Draw(float angle)
 {
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
     context_->IASetVertexBuffers(0, 1, vertexBuffer_.GetAddressOf(), &stride, &offset);
     context_->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     context_->IASetInputLayout(inputLayout_.Get());
+
+    DirectX::XMMATRIX rot = DirectX::XMMatrixRotationZ(angle);
+    DirectX::XMFLOAT4X4 mat;
+    DirectX::XMStoreFloat4x4(&mat, rot);
+    context_->UpdateSubresource(constantBuffer_.Get(), 0, nullptr, &mat, 0, 0);
+    context_->VSSetConstantBuffers(0, 1, constantBuffer_.GetAddressOf());
 
     context_->VSSetShader(vertexShader_.Get(), nullptr, 0);
     context_->PSSetShader(pixelShader_.Get(), nullptr, 0);

@@ -6,6 +6,7 @@
 #include "codex_test.h"
 
 #include <cmath>
+#include <chrono>
 
 #include "DX11Wrapper.h"
 #include "imgui.h"
@@ -23,6 +24,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // タイトル バーのテキ�
 WCHAR szWindowClass[MAX_LOADSTRING];            // メイン ウィンドウ クラス名
 DX11Wrapper g_dx;
 float g_clearColor[4] = {0.4f, 0.6f, 0.9f, 1.0f};
+std::chrono::steady_clock::time_point g_startTime;
 
 // このコード モジュールに含まれる関数の宣言を転送します:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -49,6 +51,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
+    g_startTime = std::chrono::steady_clock::now();
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CODEXTEST));
 
     MSG msg{};
@@ -73,16 +77,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             ImGui_ImplWin32_NewFrame();
             ImGui::NewFrame();
 
+            auto now = std::chrono::steady_clock::now();
+            float elapsed = std::chrono::duration<float>(now - g_startTime).count();
+            float angle = elapsed;
+
             // デバッグ用ウィンドウ
             ImGui::Begin("Debug");
             ImGui::ColorEdit4("Clear Color", g_clearColor);
+            ImGui::Text("Time: %.2f s", elapsed);
+            ImGui::Text("Rotation: %.2f rad", angle);
             ImGui::End();
 
             // 描画処理
             ImGui::Render();
 
             g_dx.Clear(g_clearColor[0], g_clearColor[1], g_clearColor[2], g_clearColor[3]);
-            g_dx.Draw();
+            g_dx.Draw(angle);
             g_dx.RenderImGui();
             g_dx.Present();
         }
