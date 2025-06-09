@@ -88,12 +88,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             ImGui::Text("Time: %.2f s", elapsed);
             ImGui::Text("Rotation: %.2f rad", angle);
             ImGui::End();
+            g_dx.DrawGUI();
 
             // 描画処理
             ImGui::Render();
 
             g_dx.Clear(g_clearColor[0], g_clearColor[1], g_clearColor[2], g_clearColor[3]);
-            g_dx.Draw(angle);
+            g_dx.Draw();
             g_dx.RenderImGui();
             g_dx.Present();
         }

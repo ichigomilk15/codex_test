@@ -4,7 +4,11 @@
 #include <d3dcompiler.h>
 #include <wrl/client.h>
 #include <DirectXMath.h>
+#include <memory>
+#include <vector>
+#include "Triangle.h"
 #include "Quad.h"
+#include "Pentagon.h"
 
 class DX11Wrapper
 {
@@ -12,25 +16,20 @@ public:
     DX11Wrapper();
     ~DX11Wrapper();
 
-    // DirectX11 デバイスとスワップチェーンを初期化
     bool Initialize(HWND hwnd, int width, int height);
-    // 画面を指定色でクリア
     void Clear(float r, float g, float b, float a);
-    // バックバッファを表示
     void Present();
-    // 四角形を描画
-    void Draw(float angle);
-    // ImGui の描画処理
+    void Draw();
     void RenderImGui();
-    // ウィンドウリサイズ時の処理
+    void DrawGUI();
     bool Resize(int width, int height);
 
     constexpr bool IsInitialized() const noexcept { return isInitialized_; }
+
+    void AddPolygon(std::unique_ptr<Polygon> poly);
 private:
-    // 四角形クラス
-    Quad quad_;
-private:
-    // DirectX11 関連オブジェクト
+    std::vector<std::unique_ptr<Polygon>> polygons_;
+
     Microsoft::WRL::ComPtr<ID3D11Device> device_;
     Microsoft::WRL::ComPtr<ID3D11DeviceContext> context_;
     Microsoft::WRL::ComPtr<IDXGISwapChain> swapChain_;
