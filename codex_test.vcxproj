@@ -77,7 +77,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>src\pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -94,7 +95,8 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>src\pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,9 +113,9 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>src\pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -135,7 +137,8 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>src\pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>.\src\DirectX;.\src\Shapes;.\external\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,14 +160,22 @@
     <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="external\imgui\timer.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Resource.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="resources\Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="DX11Wrapper.h" />
+    <ClInclude Include="src\DirectX\DX11Wrapper.h" />
+    <ClInclude Include="src\Shapes\Polygon.h" />
+    <ClInclude Include="src\Shapes\Triangle.h" />
+    <ClInclude Include="src\Shapes\Quad.h" />
+    <ClInclude Include="src\Shapes\Pentagon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="codex_test.cpp" />
-    <ClCompile Include="DX11Wrapper.cpp" />
+    <ClCompile Include="src\DirectX\DX11Wrapper.cpp" />
+    <ClCompile Include="src\Shapes\Polygon.cpp" />
+    <ClCompile Include="src\Shapes\Triangle.cpp" />
+    <ClCompile Include="src\Shapes\Quad.cpp" />
+    <ClCompile Include="src\Shapes\Pentagon.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -173,7 +184,7 @@
     <ClCompile Include="external\imgui\imgui_ja_gryph_ranges.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="external\imgui\timer.cpp" />
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -181,24 +192,24 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="codex_test.rc" />
+    <ResourceCompile Include="resources\codex_test.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShaderCommon.hlsli" />
-    <FxCompile Include="VertexShader.hlsl">
+    <None Include="shaders\SimpleShader\ShaderCommon.hlsli" />
+    <FxCompile Include="shaders\SimpleShader\VertexShader.hlsl">
       <FileType>Document</FileType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
-    <FxCompile Include="PixelShader.hlsl">
+    <FxCompile Include="shaders\SimpleShader\PixelShader.hlsl">
       <FileType>Document</FileType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="codex_test.ico" />
-    <Image Include="small.ico" />
+    <Image Include="resources\codex_test.ico" />
+    <Image Include="resources\small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
