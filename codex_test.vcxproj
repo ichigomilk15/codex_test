@@ -153,7 +153,7 @@
     <ClInclude Include="external\imgui\timer.h" />
     <ClInclude Include="src\framework.h" />
     <ClInclude Include="resources\Resource.h" />
-    <ClInclude Include="src\targetver.h" />
+    <ClInclude Include="resources\targetver.h" />
     <ClInclude Include="src\DirectX\DX11Wrapper.h" />
     <ClInclude Include="src\Shapes\Polygon.h" />
     <ClInclude Include="src\Shapes\Triangle.h" />

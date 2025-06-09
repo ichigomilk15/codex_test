@@ -33,8 +33,8 @@
     <ClInclude Include="src\framework.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\targetver.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="resources\targetver.h">
+      <Filter>リソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="resources\Resource.h">
       <Filter>ヘッダー ファイル</Filter>
