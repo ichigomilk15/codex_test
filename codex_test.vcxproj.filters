@@ -21,16 +21,28 @@
     <ClInclude Include="targetver.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="resources\Resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="codex_test.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="src\pch.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="DX11Wrapper.h">
+    <ClInclude Include="src\DirectX\DX11Wrapper.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes\Polygon.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes\Triangle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes\Quad.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shapes\Pentagon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,32 +50,44 @@
     <ClCompile Include="codex_test.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="DX11Wrapper.cpp">
+    <ClCompile Include="src\DirectX\DX11Wrapper.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="src\Shapes\Polygon.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shapes\Triangle.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shapes\Quad.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shapes\Pentagon.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\\pch.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="codex_test.rc">
+    <ResourceCompile Include="resources\\codex_test.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="resources\\small.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
-    <Image Include="codex_test.ico">
+    <Image Include="resources\\codex_test.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
-    <None Include="ShaderCommon.hlsli">
+    <None Include="shaders\SimpleShader\ShaderCommon.hlsli">
       <Filter>リソース ファイル</Filter>
     </None>
-    <None Include="VertexShader.hlsl">
+    <None Include="shaders\SimpleShader\VertexShader.hlsl">
       <Filter>リソース ファイル</Filter>
     </None>
-    <None Include="PixelShader.hlsl">
+    <None Include="shaders\SimpleShader\PixelShader.hlsl">
       <Filter>リソース ファイル</Filter>
     </None>
   </ItemGroup>
