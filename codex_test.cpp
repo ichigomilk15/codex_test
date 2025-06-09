@@ -24,6 +24,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // タイトル バーのテキ�
 WCHAR szWindowClass[MAX_LOADSTRING];            // メイン ウィンドウ クラス名
 DX11Wrapper g_dx;
 float g_clearColor[4] = {0.4f, 0.6f, 0.9f, 1.0f};
+float g_aspectRatio = 1.0f;
 std::chrono::steady_clock::time_point g_startTime;
 
 // このコード モジュールに含まれる関数の宣言を転送します:
@@ -157,6 +158,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    // DirectX11 の初期化
     RECT rc{};
     GetClientRect(hWnd, &rc);    // クライアント領域のサイズ取得
+    g_aspectRatio = static_cast<float>(rc.right - rc.left) /
+                    static_cast<float>(rc.bottom - rc.top);
     // 取得したサイズで DX11 を初期化
     g_dx.Initialize(hWnd, rc.right - rc.left, rc.bottom - rc.top);
 
@@ -194,6 +197,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
+        }
+        break;
+    case WM_SIZING:
+        {
+            RECT* rc = reinterpret_cast<RECT*>(lParam);
+            int width = rc->right - rc->left;
+            int height = rc->bottom - rc->top;
+            if (wParam == WMSZ_TOP || wParam == WMSZ_BOTTOM)
+            {
+                int newWidth = static_cast<int>(height * g_aspectRatio);
+                rc->right = rc->left + newWidth;
+            }
+            else
+            {
+                int newHeight = static_cast<int>(width / g_aspectRatio);
+                if (wParam == WMSZ_TOPLEFT || wParam == WMSZ_TOPRIGHT)
+                    rc->top = rc->bottom - newHeight;
+                else
+                    rc->bottom = rc->top + newHeight;
+            }
+            return TRUE;
         }
         break;
     case WM_SIZE:
