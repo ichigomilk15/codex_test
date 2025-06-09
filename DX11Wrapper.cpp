@@ -75,8 +75,8 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
     vp.TopLeftY = 0;
     context_->RSSetViewports(1, &vp);
 
-    // 頂点バッファなどの生成
-    if (!CreateQuad())
+    // 四角形の生成
+    if (!quad_.Initialize(device_.Get()))
         return false;
 
     // ImGui 初期化
@@ -90,70 +90,6 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
     return true;
 }
 
-// 四角形を描画するためのリソース生成
-bool DX11Wrapper::CreateQuad()
-{
-    // 頂点データ (三角形ストリップ用に 4 点)
-    SimpleVertex vertices[] = {
-        { -0.5f,  0.5f, 0.0f },
-        {  0.5f,  0.5f, 0.0f },
-        { -0.5f, -0.5f, 0.0f },
-        {  0.5f, -0.5f, 0.0f },
-    };
-
-    // 頂点バッファの設定
-    D3D11_BUFFER_DESC bd = {};
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(vertices);
-    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-
-    D3D11_SUBRESOURCE_DATA initData = {};
-    initData.pSysMem = vertices;    // 初期データとして頂点配列を指定
-
-    // 頂点バッファ作成
-    HRESULT hr = device_->CreateBuffer(&bd, &initData, vertexBuffer_.GetAddressOf());
-    if (FAILED(hr))
-        return false;
-
-    // 頂点シェーダ読み込み
-    Microsoft::WRL::ComPtr<ID3DBlob> vsBlob;
-    hr = D3DReadFileToBlob(L"VertexShader.cso", vsBlob.GetAddressOf());
-    if (FAILED(hr))
-        return false;
-
-    hr = device_->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), nullptr, vertexShader_.GetAddressOf());
-    if (FAILED(hr))
-        return false;
-
-    // 入力レイアウト定義
-    D3D11_INPUT_ELEMENT_DESC layout[] = {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-    };
-    hr = device_->CreateInputLayout(layout, 1, vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), inputLayout_.GetAddressOf());
-    if (FAILED(hr))
-        return false;
-
-    // ピクセルシェーダ読み込み
-    Microsoft::WRL::ComPtr<ID3DBlob> psBlob;
-    hr = D3DReadFileToBlob(L"PixelShader.cso", psBlob.GetAddressOf());
-    if (FAILED(hr))
-        return false;
-
-    hr = device_->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), nullptr, pixelShader_.GetAddressOf());
-    if (FAILED(hr))
-        return false;
-
-    // 定数バッファ作成
-    D3D11_BUFFER_DESC cbd = {};
-    cbd.Usage = D3D11_USAGE_DEFAULT;
-    cbd.ByteWidth = sizeof(DirectX::XMFLOAT4X4);
-    cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    hr = device_->CreateBuffer(&cbd, nullptr, constantBuffer_.GetAddressOf());
-    if (FAILED(hr))
-        return false;
-
-    return true;
-}
 
 // 画面を指定色でクリア
 void DX11Wrapper::Clear(float r, float g, float b, float a)
@@ -165,23 +101,7 @@ void DX11Wrapper::Clear(float r, float g, float b, float a)
 // 頂点バッファを利用して描画
 void DX11Wrapper::Draw(float angle)
 {
-    UINT stride = sizeof(SimpleVertex);
-    UINT offset = 0;
-    context_->IASetVertexBuffers(0, 1, vertexBuffer_.GetAddressOf(), &stride, &offset);
-    context_->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-    context_->IASetInputLayout(inputLayout_.Get());
-
-    DirectX::XMMATRIX world = DirectX::XMMatrixRotationZ(angle);
-
-    DirectX::XMFLOAT4X4 mat;
-    DirectX::XMStoreFloat4x4(&mat, world);
-    context_->UpdateSubresource(constantBuffer_.Get(), 0, nullptr, &mat, 0, 0);
-    context_->VSSetConstantBuffers(0, 1, constantBuffer_.GetAddressOf());
-
-    context_->VSSetShader(vertexShader_.Get(), nullptr, 0);
-    context_->PSSetShader(pixelShader_.Get(), nullptr, 0);
-
-    context_->Draw(4, 0);
+    quad_.Draw(context_.Get(), angle);
 }
 
 // ImGui の描画データを送信
