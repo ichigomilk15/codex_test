@@ -5,28 +5,25 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\\DirectX">
-      <UniqueIdentifier>{59fdb615-d8dc-45fc-b978-480f52f5dccb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\\Shapes">
-      <UniqueIdentifier>{ebbdf293-ec63-4b86-a4fe-49311263d099}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\\DirectX">
-      <UniqueIdentifier>{8a2aff53-622e-4e74-80d8-e69c1542a793}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\\Shapes">
-      <UniqueIdentifier>{796aaad4-ebe6-49cb-8a7a-116663233763}</UniqueIdentifier>
     </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="リソース ファイル\\Shaders">
-      <UniqueIdentifier>{d29dfe1b-d4d0-4fe2-8c39-a08eb9935f19}</UniqueIdentifier>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{545067a8-ca2f-4221-a61b-f6e225066df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\SimpleShader">
+      <UniqueIdentifier>{d5806af9-cc88-489c-b9a1-c4aa66bd87a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="外部ライブラリ">
+      <UniqueIdentifier>{d62d753a-bf81-469d-ba87-bd8f02a5697f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="外部ライブラリ\imgui">
+      <UniqueIdentifier>{cc1c1c22-b063-4e44-b45d-c91f502f05a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,20 +39,47 @@
     <ClInclude Include="src\codex_test.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="external\imgui\timer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="src\DirectX\DX11Wrapper.h">
-      <Filter>ヘッダー ファイル\DirectX</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Polygon.h">
-      <Filter>ヘッダー ファイル\Shapes</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Triangle.h">
-      <Filter>ヘッダー ファイル\Shapes</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Quad.h">
-      <Filter>ヘッダー ファイル\Shapes</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Shapes\Pentagon.h">
-      <Filter>ヘッダー ファイル\Shapes</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imconfig.h">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imgui.h">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imgui_impl_dx11.h">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imgui_impl_win32.h">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imgui_internal.h">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imstb_rectpack.h">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imstb_textedit.h">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="external\imgui\imstb_truetype.h">
+      <Filter>外部ライブラリ\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -63,19 +87,43 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\DirectX\DX11Wrapper.cpp">
-      <Filter>ソース ファイル\DirectX</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Polygon.cpp">
-      <Filter>ソース ファイル\Shapes</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Triangle.cpp">
-      <Filter>ソース ファイル\Shapes</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Quad.cpp">
-      <Filter>ソース ファイル\Shapes</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Pentagon.cpp">
-      <Filter>ソース ファイル\Shapes</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\timer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui.cpp">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_demo.cpp">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_draw.cpp">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_impl_dx11.cpp">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_impl_win32.cpp">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_ja_gryph_ranges.cpp">
+      <Filter>外部ライブラリ\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="external\imgui\imgui_widgets.cpp">
+      <Filter>外部ライブラリ\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,14 +138,18 @@
     <Image Include="resources\codex_test.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shaders\SimpleShader\PixelShader.hlsl">
+      <Filter>Shaders\SimpleShader</Filter>
+    </FxCompile>
+    <FxCompile Include="shaders\SimpleShader\VertexShader.hlsl">
+      <Filter>Shaders\SimpleShader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="shaders\SimpleShader\ShaderCommon.hlsli">
-      <Filter>リソース ファイル\Shaders</Filter>
-    </None>
-    <None Include="shaders\SimpleShader\VertexShader.hlsl">
-      <Filter>リソース ファイル\Shaders</Filter>
-    </None>
-    <None Include="shaders\SimpleShader\PixelShader.hlsl">
-      <Filter>リソース ファイル\Shaders</Filter>
+      <Filter>Shaders\SimpleShader</Filter>
     </None>
   </ItemGroup>
 </Project>
