@@ -23,7 +23,7 @@ public:
     void Clear(float r, float g, float b, float a);
     // バックバッファを表示
     void Present();
-    // 三角形を描画
+    // 四角形を描画
     void Draw(float angle);
     // ImGui の描画処理
     void RenderImGui();
@@ -33,7 +33,7 @@ public:
     constexpr bool IsInitialized() const noexcept { return isInitialized_; }
 private:
     // 頂点バッファとシェーダを作成
-    bool CreateTriangle();
+    bool CreateQuad();
 private:
     // DirectX11 関連オブジェクト
     Microsoft::WRL::ComPtr<ID3D11Device> device_;

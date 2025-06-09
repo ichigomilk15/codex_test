@@ -76,7 +76,7 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
     context_->RSSetViewports(1, &vp);
 
     // 頂点バッファなどの生成
-    if (!CreateTriangle())
+    if (!CreateQuad())
         return false;
 
     // ImGui 初期化
@@ -90,14 +90,15 @@ bool DX11Wrapper::Initialize(HWND hwnd, int width, int height)
     return true;
 }
 
-// 三角形を描画するためのリソース生成
-bool DX11Wrapper::CreateTriangle()
+// 四角形を描画するためのリソース生成
+bool DX11Wrapper::CreateQuad()
 {
-    // 頂点データ
+    // 頂点データ (三角形ストリップ用に 4 点)
     SimpleVertex vertices[] = {
-        { 0.0f, 0.5f, 0.0f },
-        { 0.5f, -0.5f, 0.0f },
+        { -0.5f,  0.5f, 0.0f },
+        {  0.5f,  0.5f, 0.0f },
         { -0.5f, -0.5f, 0.0f },
+        {  0.5f, -0.5f, 0.0f },
     };
 
     // 頂点バッファの設定
@@ -167,14 +168,10 @@ void DX11Wrapper::Draw(float angle)
     UINT stride = sizeof(SimpleVertex);
     UINT offset = 0;
     context_->IASetVertexBuffers(0, 1, vertexBuffer_.GetAddressOf(), &stride, &offset);
-    context_->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+    context_->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
     context_->IASetInputLayout(inputLayout_.Get());
 
-    constexpr float centerY = -1.0f / 6.0f; // 三角形の中心座標 (Y 軸)
-    DirectX::XMMATRIX world =
-        DirectX::XMMatrixTranslation(0.0f, -centerY, 0.0f) *
-        DirectX::XMMatrixRotationZ(angle) *
-        DirectX::XMMatrixTranslation(0.0f, centerY, 0.0f);
+    DirectX::XMMATRIX world = DirectX::XMMatrixRotationZ(angle);
 
     DirectX::XMFLOAT4X4 mat;
     DirectX::XMStoreFloat4x4(&mat, world);
@@ -184,7 +181,7 @@ void DX11Wrapper::Draw(float angle)
     context_->VSSetShader(vertexShader_.Get(), nullptr, 0);
     context_->PSSetShader(pixelShader_.Get(), nullptr, 0);
 
-    context_->Draw(3, 0);
+    context_->Draw(4, 0);
 }
 
 // ImGui の描画データを送信
