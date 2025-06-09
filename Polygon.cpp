@@ -13,7 +13,17 @@ static bool CompileShader(const wchar_t* file, const char* entry, const char* ta
     flags |= D3DCOMPILE_DEBUG;
 #endif
     ComPtr<ID3DBlob> error;
-    HRESULT hr = D3DCompileFromFile(file, nullptr, nullptr, entry, target, flags, 0, blob.GetAddressOf(), error.GetAddressOf());
+    // Enable #include directive by providing standard file include handler
+    HRESULT hr = D3DCompileFromFile(
+        file,
+        nullptr,
+        D3D_COMPILE_STANDARD_FILE_INCLUDE,
+        entry,
+        target,
+        flags,
+        0,
+        blob.GetAddressOf(),
+        error.GetAddressOf());
     if (FAILED(hr)) {
         if (error) OutputDebugStringA((char*)error->GetBufferPointer());
         return false;
